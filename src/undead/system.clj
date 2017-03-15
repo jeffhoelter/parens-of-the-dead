@@ -1,17 +1,12 @@
 (ns undead.system
-  (:require [org.httpkit.server :refer [run-server]]
-            [com.stuartsierra.component :as component]))
-
-(defn app [req]
-  {:status  200
-   :headers {"Content-Type" "text/html"}
-   :body    "hello HTTP!"})
-
+  (:require [com.stuartsierra.component :as component]
+            [org.httpkit.server :refer [run-server]]
+            [undead.web :refer [app]]))
 
 (defn- start-server [handler port]
-  (run-server app {:port port})
-  (println (str "Started server on localhost:" port))
-  server)
+  (let [server  (run-server app {:port port})]
+    (println (str "Started server on localhost:" port))
+    server))
 
 (defn- stop-server [server]
   (when server
