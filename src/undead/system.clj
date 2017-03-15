@@ -20,7 +20,6 @@
     (stop-server (:server this))
     (dissoc this :server)))
 
-
 (defn create-system []
   (ParensOfTheDead.))
 

@@ -1,12 +1,13 @@
 (ns undead.web
-  (:require [compojure.core :refer [defroutes]]))
+  (:require [compojure.core :refer [defroutes GET]]
+            [compojure.route :as route]))
 
-(declare)
-
-(defn app [req]
+(defn index [req]
   {:status  200
    :headers {"Content-Type" "text/html"}
-   :body    "hello HTTP!"})
+   :body    "hello from Compojure!"})
 
 (defroutes app
-  (GET ))
+  (GET "/" [] index)
+  (route/resources "/")
+  (route/not-found "Page not found"))
